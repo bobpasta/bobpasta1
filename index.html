@@ -313,7 +313,8 @@
 			}
 			copyToClipboard(totalAmount);
 			alert('결제 금액: ' + totalAmount + '원\n위 금액을 카카오페이에 입력해주세요. (붙여넣기 가능)');
-			location.href = 'https://qr.kakaopay.com/281006011118310251003045';
+			window.open('https://qr.kakaopay.com/281006011118310251003045');
+			//location.href = 'https://qr.kakaopay.com/281006011118310251003045';
 		});
 
 	}
@@ -391,5 +392,4 @@
 	goods.drawGoods2(goods.arrAllGoods);
 
 </script>
-
 
