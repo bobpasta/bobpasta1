@@ -241,14 +241,14 @@
 			
 			
 			//console.log(orderList);
-			$('#goodsTotAmt').html(goodsTotAmt);
+			//$('#goodsTotAmt').html(goodsTotAmt); 뒤로 뺌.
 			
 			var innerHtml = "";
 			innerHtml = '<span style="font-weight:bold">주문 내역:</span>';
 			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; columns:1">';
 			
 			for (var i=0; i<orderList.length; i++){
-				innerHtml += '<li style="font-weight:bold; margin-left:10px">';
+				innerHtml += '<li style="margin-left:10px">';
 				innerHtml += orderList[i].goodsNm;
 				innerHtml += ' ' + orderList[i].cnt + '개';
 				innerHtml += '</li>';
