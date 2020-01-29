@@ -26,12 +26,10 @@
 </body>
 <span style="font-weight:bold; color:blue">2. 주문 내역과 금액을 확인해주세요</span>
 <br>
-주문 내역:
-<div id="orders">
-</div>
+<div id="orders" style="border:3px dashed #bcbcbc">
 <!--span> 주문 금액: <input type="text" style="border:0; width:50px" id="goodsTotAmt2" name="totAmt" value=0>원</span!-->
-<span> 주문 금액: <span id="goodsTotAmt"></span>원</span>
-</br>
+</div>
+
 <br>
 <span style="font-weight:bold; color:blue">3. 주문하기를 클릭해주세요</span>
 <br>
@@ -246,15 +244,18 @@
 			$('#goodsTotAmt').html(goodsTotAmt);
 			
 			var innerHtml = "";
-			innerHtml = '<ul class="columns" data-columns="1" style="padding-left:10; columns:1">';
+			innerHtml = '<span style="font-weight:bold">주문 내역:</span>';
+			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; columns:1">';
 			
 			for (var i=0; i<orderList.length; i++){
-				innerHtml += '<li>';
+				innerHtml += '<li style="font-weight:bold; margin-left:10px">';
 				innerHtml += orderList[i].goodsNm;
 				innerHtml += ' ' + orderList[i].cnt + '개';
 				innerHtml += '</li>';
 			}
 			innerHtml += '</ul>';
+			innerHtml += '<span style="background-color: #FFFF00; font-weight:bold">주문 금액:  </span>';
+			innerHtml += '<span style="background-color: #FFFF00; font-weight:bold">' + goodsTotAmt + '원'+ '</span>';
 			$('#orders').empty().append(innerHtml);
 			
 		}
