@@ -31,9 +31,9 @@
 </div>
 
 <br>
-<span style="font-weight:bold; color:blue">3. 주문하기를 클릭해주세요</span>
+<span style="font-weight:bold; color:blue">3. 주문 및 결제를 클릭해주세요</span>
 <br>
-<span> 클릭과 동시에 주방에 주문 완료 됩니다<span/>
+<span> 클릭과 동시에 주방에 주문이 들어갑니다<span/>
 <br><br>
 <button id="order-btn"
 		style = "display: block;
@@ -46,13 +46,13 @@
 	      font-family:sans-serif;
 	      color: white;
 		  "
->주문하기</button>
+>주문 및 결제</button>
+<!--br>
+<br>
+<span style="font-weight:bold; color:blue">4. 카카오페이 결제하기를 클릭해주세요</span!-->
 <br>
 <br>
-<span style="font-weight:bold; color:blue">4. 카카오페이 결제하기를 클릭해주세요</span>
-<br>
-<br>
-<input type = "button" id = 'payButton' value = "계산하기" onclick = "
+<!--input type = "button" id = 'payButton' value = "계산하기" onclick = "
 	location.href = 'https://qr.kakaopay.com/281006011118310251003045';"
 	style = "display: block;
 		  width: 100%;
@@ -63,7 +63,7 @@
 		  font-size:93%;
 	      font-family:sans-serif;
 	      color: white;
-		  ">
+		  "!-->
 
 <script>
 	// menu 추가하기
@@ -278,7 +278,7 @@
 				isLoading(false);
 				return;
 			}
-			
+			var totalAmount = 0;
 			for (var i =0; i<orderList.length; i++) {
 				var order = orderList[i];
 				$.ajax({
@@ -302,7 +302,11 @@
 					  console.log(request.responseText);
 					}
 				});
+				totalAmount += order.cnt * order.goodsUnprc;
 			}
+			alert('결제 금액: ' + totalAmount + '원');
+			location.href = 'https://qr.kakaopay.com/281006011118310251003045';
+			
 		});
 
 	}
