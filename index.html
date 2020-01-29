@@ -73,10 +73,14 @@
 			var innerHtml = "";
 			for (var i=start; i<=end; i++){
 				innerHtml += '<li style="padding:0;">';
+				innerHtml += '<span id="input_cnt_'+goods[i].goodsId+'">' + '개 ' +'</span>';
+				
 				innerHtml += '<button type="button" id="" class="add" name="" onclick="goods.minus(\''+goods[i].goodsId+'\');">-</button>';
 				innerHtml += '<button type="button" id="" class="remove" name="" onclick="goods.plus(\''+goods[i].goodsId+'\');">+</button>';
-				innerHtml += '  ' + goods[i].goodsNm + '(' + goods[i].goodsUnprc+'원)   ';
-				innerHtml += '<span id="input_cnt_'+goods[i].goodsId+'"></span>개'
+				
+				//innerHtml += '  ' + goods[i].goodsNm + '(' + goods[i].goodsUnprc+'원)   ';
+				innerHtml += '<span id="input_id_'+goods[i].goodsId+'">' +'  '+goods[i].goodsNm + '(' + goods[i].goodsUnprc+'원)   '+'</span>';
+
 				//innerHtml += '<input type="text" style="border:0; width:15px" id="input_cnt_'+goods[i].goodsId+'" name="" value="0"/>개 '
 				//innerHtml += '금액: <input type="text" style="border:0; width:50px" id="input_sumAmt_'+prmtObj.goodsId+'" name="" value="0"/>'
 				
@@ -225,7 +229,16 @@
 			var goodsTotAmt = 0;
 			for(var i=0;i<p.arrAllGoods.length;i++){
 				//$('#input_cnt_'+p.arrAllGoods[i].goodsId).val(p.arrAllGoods[i].cnt); span 으로 바꾸면서 밑에꺼 쓰게 됨.
-				$('#input_cnt_'+p.arrAllGoods[i].goodsId).html(p.arrAllGoods[i].cnt);
+				$('#input_cnt_'+p.arrAllGoods[i].goodsId).html(p.arrAllGoods[i].cnt +'개 ');
+				if (p.arrAllGoods[i].cnt>0) {
+					$('#input_id_'+p.arrAllGoods[i].goodsId).css("font-weight", "Bold");
+					$('#input_cnt_'+p.arrAllGoods[i].goodsId).css("font-weight", "Bold");
+				}
+				else {
+					$('#input_id_'+p.arrAllGoods[i].goodsId).css("font-weight", "Normal");
+					$('#input_cnt_'+p.arrAllGoods[i].goodsId).css("font-weight", "Normal");
+				}
+
 				//$('#input_sumAmt_'+p.arrAllGoods[i].goodsId).val(p.arrAllGoods[i].cnt*p.arrAllGoods[i].goodsUnprc);
 				goodsTotAmt += p.arrAllGoods[i].cnt*p.arrAllGoods[i].goodsUnprc;
 				if (p.arrAllGoods[i].cnt > 0) {
