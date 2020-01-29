@@ -268,7 +268,7 @@
 			orderBtn.attr('disabled', true).html('주문중...');
 		  } else {
 			$('html, body').removeClass('wait');
-			orderBtn.attr('disabled', false).html('주문하기');
+			orderBtn.attr('disabled', false).html('주문 및 결제');
 		  }
 		}
 
@@ -304,7 +304,7 @@
 				});
 				totalAmount += order.cnt * order.goodsUnprc;
 			}
-			alert('결제 금액: ' + totalAmount + '원');
+			alert('주문 완료!\n결제 금액: ' + totalAmount + '원\n위 금액을 카카오페이에 입력해주세요. (붙혀넣기 가능)');
 			location.href = 'https://qr.kakaopay.com/281006011118310251003045';
 			
 		});
