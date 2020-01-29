@@ -271,7 +271,16 @@
 			orderBtn.attr('disabled', false).html('주문 및 결제');
 		  }
 		}
-
+		
+		function copyToClipboard(val) {
+		  var t = document.createElement("textarea");
+		  document.body.appendChild(t);
+		  t.value = val;
+		  t.select();
+		  document.execCommand('copy');
+		  document.body.removeChild(t);
+		}
+		
 		$('#order-btn').click(function(){
 			isLoading(true);
 			if (orderList.length == 0) {
@@ -304,9 +313,9 @@
 				});
 				totalAmount += order.cnt * order.goodsUnprc;
 			}
-			alert('주문 완료!\n결제 금액: ' + totalAmount + '원\n위 금액을 카카오페이에 입력해주세요. (붙혀넣기 가능)');
+			copyToClipboard(totalAmount);
+			alert('결제 금액: ' + totalAmount + '원\n위 금액을 카카오페이에 입력해주세요. (붙혀넣기 가능)');
 			location.href = 'https://qr.kakaopay.com/281006011118310251003045';
-			
 		});
 
 	}
