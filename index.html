@@ -79,14 +79,17 @@
 				innerHtml += '<button type="button" id="" class="remove" name="" onclick="goods.plus(\''+goods[i].goodsId+'\');">+</button>';
 				
 				//innerHtml += '  ' + goods[i].goodsNm + '(' + goods[i].goodsUnprc+'원)   ';
-				innerHtml += '<span id="input_id_'+goods[i].goodsId+'">' +'  '+goods[i].goodsNm + '(' + goods[i].goodsUnprc+'원)   '+'</span>';
+				//innerHtml += '<span id="input_id_'+goods[i].goodsId+'">' +'  '+goods[i].goodsNm + '(' + goods[i].goodsUnprc+'원)   '+'</span>';
+				innerHtml += '<span id="input_id_'+goods[i].goodsId+'">' +'  '+goods[i].goodsNm +'</span>';
 
 				//innerHtml += '<input type="text" style="border:0; width:15px" id="input_cnt_'+goods[i].goodsId+'" name="" value="0"/>개 '
 				//innerHtml += '금액: <input type="text" style="border:0; width:50px" id="input_sumAmt_'+prmtObj.goodsId+'" name="" value="0"/>'
 				
 				innerHtml += '</li>';
+			}
+			for (var i=start; i<=end; i++){
 				innerHtml += '<li style="padding:0;">';
-				innerHtml += '금액';
+				innerHtml += '<span id="input_price_'+goods[i].goodsId+'">' + goods[i].goodsUnprc+'원'+'</span>';
 				innerHtml += '</li>';
 			}
 			return innerHtml;
