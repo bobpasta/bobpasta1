@@ -72,7 +72,7 @@
 		this.drawBullet = function(goods, start, end){
 			var innerHtml = "";
 			for (var i=start; i<=end; i++){
-				innerHtml += '<li style="padding:0;">';
+				innerHtml += '<li style="float:left; width:90%">';
 				innerHtml += '<span id="input_cnt_'+goods[i].goodsId+'">' + '개 ' +'</span>';
 				
 				innerHtml += '<button type="button" id="" class="add" name="" onclick="goods.minus(\''+goods[i].goodsId+'\');">-</button>';
@@ -86,12 +86,16 @@
 				//innerHtml += '금액: <input type="text" style="border:0; width:50px" id="input_sumAmt_'+prmtObj.goodsId+'" name="" value="0"/>'
 				
 				innerHtml += '</li>';
-			}
+				
+				innerHtml += '<li style="float:left; width:10%">';
+				innerHtml += '<span id="input_price_'+goods[i].goodsId+'">' + goods[i].goodsUnprc+'원'+'</span>';
+				innerHtml += '</li>';
+			}/*
 			for (var i=start; i<=end; i++){
 				innerHtml += '<li style="padding:0;">';
 				innerHtml += '<span id="input_price_'+goods[i].goodsId+'">' + goods[i].goodsUnprc+'원'+'</span>';
 				innerHtml += '</li>';
-			}
+			}*/
 			return innerHtml;
 		}
 		
@@ -99,7 +103,7 @@
 			var innerHtml = "";
 			
 			innerHtml += '스테이크 및 피자';
-			innerHtml += '<ul class="columns" data-columns="2" style="padding-left:10; list-style:none; columns:2">';
+			innerHtml += '<ul style="list-style: none; padding-left:10;">';
 			innerHtml += this.drawBullet(goods, 0, 3);
 			innerHtml += '</ul>';
 			
