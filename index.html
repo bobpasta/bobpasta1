@@ -46,18 +46,6 @@
 <span style="font-weight:bold; color:blue">4. 카카오페이 결제하기를 클릭해주세요</span!-->
 <br>
 <br>
-<!--input type = "button" id = 'payButton' value = "계산하기" onclick = "
-	location.href = 'https://qr.kakaopay.com/281006011118310251003045';"
-	style = "display: block;
-		  width: 100%;
-		  height: 35px;
-		  margin-left: 0;
-		  margin-right: auto;
-		  background: rgba(26,125,112,1);
-		  font-size:93%;
-	      font-family:sans-serif;
-	      color: white;
-		  "!-->
 
 <script>
 	// menu 추가하기
@@ -81,9 +69,6 @@
 				//innerHtml += '  ' + goods[i].goodsNm + '(' + goods[i].goodsUnprc+'원)   ';
 				innerHtml += '<span id="input_id_'+goods[i].goodsId+'">' +'  '+goods[i].goodsNm + '(' + goods[i].goodsUnprc+'원)   '+'</span>';
 
-				//innerHtml += '<input type="text" style="border:0; width:15px" id="input_cnt_'+goods[i].goodsId+'" name="" value="0"/>개 '
-				//innerHtml += '금액: <input type="text" style="border:0; width:50px" id="input_sumAmt_'+prmtObj.goodsId+'" name="" value="0"/>'
-				
 				innerHtml += '</li>';
 			}
 			return innerHtml;
@@ -93,104 +78,49 @@
 			var innerHtml = "";
 			
 			innerHtml += '스테이크 및 피자';
-			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:1">';
+			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:2">';
 			innerHtml += this.drawBullet(goods, 0, 3);
 			innerHtml += '</ul>';
 			
 			innerHtml += '토마토 파스타';
-			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:1">';
+			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:2">';
 			innerHtml += this.drawBullet(goods, 4, 9);
 			innerHtml += '</ul>';
 			
 			innerHtml += '크림 파스타';
-			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:1">';
+			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:2">';
 			innerHtml += this.drawBullet(goods, 10, 16);
 			innerHtml += '</ul>';	
 			
 			innerHtml += '오일 파스타';
-			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:1">';
+			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:2">';
 			innerHtml += this.drawBullet(goods, 17, 20);
 			innerHtml += '</ul>';
 						
 			innerHtml += '토마토 리조또';
-			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:1">';
+			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:2">';
 			innerHtml += this.drawBullet(goods, 21, 26);
 			innerHtml += '</ul>';
 			
 			innerHtml += '크림 리조또';
-			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:1">';
+			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:2">';
 			innerHtml += this.drawBullet(goods, 27, 33);
 			innerHtml += '</ul>';
 						
 			innerHtml += '음료';
-			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:1">';
+			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:2">';
 			innerHtml += this.drawBullet(goods, 34, 46);
 			innerHtml += '</ul>';
 						
 			innerHtml += '세트로 변경, 마늘빵 추가';
-			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:1">';
+			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:2">';
 			innerHtml += this.drawBullet(goods, 47, 48);
 			innerHtml += '</ul>';			
 			
 			$('#container').append(innerHtml);
-			/*
-			for (var i=0; i<goods.length; i++){inner
-				innerHtml += '<div id="div_'+goods[i].goodsId+'">';
-				innerHtml += '<ul>';
-				innerHtml += '<button type="button" id="" class="add" name="" onclick="goods.minus(\''+goods[i].goodsId+'\');">-</button>';
-				innerHtml += '  ' + goods[i].goodsNm + '(' + goods[i].goodsUnprc+'원)   ';
-				
-				innerHtml += '수량: <input type="text" style="border:0; width:20px" id="input_cnt_'+goods[i].goodsId+'" name="" value="0"/>'
-				//innerHtml += '금액: <input type="text" style="border:0; width:50px" id="input_sumAmt_'+prmtObj.goodsId+'" name="" value="0"/>'
-				innerHtml += '<button type="button" id="" class="remove" name="" onclick="goods.plus(\''+goods[i].goodsId+'\');">+</button>';
-				innerHtml += '</ul>';
-				innerHtml += '</div>';
-				$('#container').append(innerHtml);
-			}*/
-
+			
 			p.afterProc();
 		}
-		
-		/*
-		this.drawGoods = function(prmtObj){
-			
-			var innerHtml = "";
-			
-			innerHtml += '<div id="div_'+prmtObj.goodsId+'">';
-			if (prmtObj.goodsId == 1) {
-				innerHtml += '<br>';
-				innerHtml += '스테이크 및 파스타';
-			}
-			if (prmtObj.goodsId == 5) {
-				innerHtml += '<br>';
-				innerHtml += '토마토 파스타';
-			}
-			if (prmtObj.goodsId == 12) {
-				innerHtml += '<br>';
-				innerHtml += '크림 파스타';
-			}
-			if (prmtObj.goodsId == 19) {
-				innerHtml += '<br>';
-				innerHtml += '오일 파스타';
-			}
-			innerHtml += '<ul>';
-			if (prmtObj.goodsId >=5 && prmtObj.goodsId <= 11){
-				innerHtml += '<ul style="list-style:none; float:left; padding-right:10px">';
-			}
-			innerHtml += '<button type="button" id="" class="add" name="" onclick="goods.minus(\''+prmtObj.goodsId+'\');">-</button>';
-			innerHtml += '  ' + prmtObj.goodsNm + '(' + prmtObj.goodsUnprc+'원)   ';
-			
-			innerHtml += '수량: <input type="text" style="border:0; width:20px" id="input_cnt_'+prmtObj.goodsId+'" name="" value="0"/>'
-			//innerHtml += '금액: <input type="text" style="border:0; width:50px" id="input_sumAmt_'+prmtObj.goodsId+'" name="" value="0"/>'
-			innerHtml += '<button type="button" id="" class="remove" name="" onclick="goods.plus(\''+prmtObj.goodsId+'\');">+</button>';
-			if (prmtObj.goodsId >=5 && prmtObj.goodsId <= 11){
-				innerHtml += '</li>';
-			}
-			innerHtml += '</ul>';
-			innerHtml += '</div>';
-			$('#container').append(innerHtml);
-			
-		}*/
 		
 		this.plus = function (trgtGoodsId){
 			
