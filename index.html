@@ -281,40 +281,40 @@
 		
 		$('#order-btn').click(function(){
 			isLoading(true);
+			var totalAmount = 0;
 			if (orderList.length == 0) {
 				isLoading(false);
-				return;
-			}
-			var totalAmount = 0;
-			for (var i =0; i<orderList.length; i++) {
-				var order = orderList[i];
-				$.ajax({
-					type: "GET",
-					url: "https://script.google.com/macros/s/AKfycbxJFXBRqM4_Y4E_w5qlI8QVmHd6HszYbqiyr65er5MEkGXA_0Eg/exec",
-					data: {
-					  "메뉴": order.goodsNm,
-					  "개수": order.cnt,
-					  "가격": order.goodsUnprc * order.cnt,
-					  "테이블 번호": 2,
-					},
-					success: function (response) {
-					  isLoading(false);
-					  console.log(response);
-					  $('#showData').html('');
-					},
-					error: function (request, status, error) {
-					  console.log("error during doGet");
-					  isLoading(false);
-					  console.log("code:" + request.status + "\n" + "error:" + error);
-					  console.log(request.responseText);
-					}
-				});
-				totalAmount += order.cnt * order.goodsUnprc;
+			} else{
+				for (var i =0; i<orderList.length; i++) {
+					var order = orderList[i];
+					$.ajax({
+						type: "GET",
+						url: "https://script.google.com/macros/s/AKfycbxJFXBRqM4_Y4E_w5qlI8QVmHd6HszYbqiyr65er5MEkGXA_0Eg/exec",
+						data: {
+						  "메뉴": order.goodsNm,
+						  "개수": order.cnt,
+						  "가격": order.goodsUnprc * order.cnt,
+						  "테이블 번호": 2,
+						},
+						success: function (response) {
+						  isLoading(false);
+						  console.log(response);
+						  $('#showData').html('');
+						},
+						error: function (request, status, error) {
+						  console.log("error during doGet");
+						  isLoading(false);
+						  console.log("code:" + request.status + "\n" + "error:" + error);
+						  console.log(request.responseText);
+						}
+					});
+					totalAmount += order.cnt * order.goodsUnprc;
+				}
 			}
 			copyToClipboard(totalAmount);
-			alert('결제 금액: ' + totalAmount + '원\n위 금액을 카카오페이에 입력해주세요. (붙여넣기 가능)');
-			window.open('https://qr.kakaopay.com/281006011118310251003045');
-			//location.href = 'https://qr.kakaopay.com/281006011118310251003045';
+			alert('결제 금액: ' + totalAmount + '원\n위 금액을 카카오페이에 입력해주세요.');
+			//window.open('https://qr.kakaopay.com/281006011118310251003045');
+			location.href = 'https://qr.kakaopay.com/281006011118310251003045';
 		});
 
 	}
