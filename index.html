@@ -67,8 +67,13 @@
 				innerHtml += '<button type="button" id="" class="remove" name="" onclick="goods.plus(\''+goods[i].goodsId+'\');">+</button>';
 				
 				//innerHtml += '  ' + goods[i].goodsNm + '(' + goods[i].goodsUnprc+'원)   ';
-				innerHtml += '<span id="input_id_'+goods[i].goodsId+'">' +'  '+goods[i].goodsNm + '(' + goods[i].goodsUnprc+'원)   '+'</span>';
+				innerHtml += '<span id="input_id_'+goods[i].goodsId+'">' +'  '+goods[i].goodsNm +'</span>';
 
+				innerHtml += '</li>';
+			}
+			for (var i=start; i<=end; i++){
+				innerHtml += '<li style="padding:0;">';
+				innerHtml += '<span id="input_prc_'+goods[i].goodsId+'">' + goods[i].goodsUnprc+'원   '+'</span>';
 				innerHtml += '</li>';
 			}
 			return innerHtml;
