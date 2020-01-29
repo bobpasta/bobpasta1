@@ -20,7 +20,7 @@
 </body>
 <span style="font-weight:bold; color:blue">2. 주문 내역과 금액을 확인해주세요</span>
 <br>
-<div id="orders" style="border:3px dashed #bcbcbc">
+<div id="orders" style="border:3px solid #bcbcbc">
 <!--span> 주문 금액: <input type="text" style="border:0; width:50px" id="goodsTotAmt2" name="totAmt" value=0>원</span!-->
 </div>
 
@@ -85,6 +85,9 @@
 				//innerHtml += '금액: <input type="text" style="border:0; width:50px" id="input_sumAmt_'+prmtObj.goodsId+'" name="" value="0"/>'
 				
 				innerHtml += '</li>';
+				innerHtml += '<li style="padding:0;">';
+				innerHtml += '금액';
+				innerHtml += '</li>';
 			}
 			return innerHtml;
 		}
@@ -93,8 +96,7 @@
 			var innerHtml = "";
 			
 			innerHtml += '스테이크 및 피자';
-			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:1">';
-			
+			innerHtml += '<ul class="columns" data-columns="2" style="padding-left:10; list-style:none; columns:2">';
 			innerHtml += this.drawBullet(goods, 0, 3);
 			innerHtml += '</ul>';
 			
