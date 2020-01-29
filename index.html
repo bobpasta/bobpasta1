@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+		<style>
+			input#copyText {
+				border: none;
+				border-bottom: 1px solid gray;
+			}
+		</style>
+		<p>
+			메뉴 선택 후 주문하기를 누르세요
+		</p>
+			<script>
+
+			</script>
+			<input type = "checkbox" class = 'menu' id = '부채살스테이크' onclick = "addNumbers();" value = 19000 >부채살스테이크 - 18000원<br>
+			<input type = "checkbox" class = 'menu' id = '뽀모도로' onclick = "addNumbers();" value = 12000 >뽀모도로 - 12000원<br>
+			<input type = "checkbox" class = 'menu' id = '아마트리치아나' onclick = "addNumbers();" value = 12500 >아마트리치아나 - 12500원<br>
+			<input type = "checkbox" class = 'menu' id = '만조' onclick = "addNumbers();" value = 13000 >만조 - 13000원<br>
+			<input type = "checkbox" class = 'menu' id = '해산물파스타' onclick = "addNumbers();" value = 13500 >해산물파스타 - 13500원<br>
+			<input type = "checkbox" class = 'menu' id = '빼쉐 뚝배기파스타' onclick = "addNumbers();" value = 15000 >뺴쉐 뚝배기파스타 - 15000원<br>
+			<input type = "checkbox" class = 'menu' id = '떡갈비 라구소스 파스타' onclick = "addNumbers();" value = 12500 >떡갈비 라구소스 파스타 - 12500원<br>
+			<input type = "checkbox" class = 'menu' id = '까르보나라' onclick = "addNumbers();" value = 12500 >까르보나라 - 12500원<br>
+			<input type = "checkbox" class = 'menu' id = '새우날치알' onclick = "addNumbers();" value = 13000 >새우날치알 - 13000원<br>
+			<!--총 금액 : <input type="text" value="" id = 'answer'> <br> -->
+			총 금액: <span id='answer'> 0원</span>
+			<br>
+			<button id="order-btn">주문하기</button>
+			<!--input type = "text" id = 'copyText'-->
+			<br>
+			<br>
+			<br>
+			
+			<!--주문내역 :
+			<br>
+			<br>
+			
+			<div id="showData"></div>
+			<br>
+			결제해야 할 금액: <span id='priceSum'> 0원</span>
+			-->
+			<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+			<script>
+			var checkbox = document.getElementsByClassName('menu');
+			// 메뉴 모으는 부분
+			function addNumbers() {
+			var sum = 0;
+			var str = "";
+			
+			for (var i=0; i<checkbox.length; i++) {
+				if (checkbox[i].checked) {
+					sum += parseInt(checkbox[i].value);
+					str = str + (i+1) + ",";
+				}
+			}
+			
+
+
+			document.getElementById('answer').innerHTML=String(sum)+'원';
+			//document.getElementById('copyText').value=String(sum)+'원 '+'메뉴:'+str;
+			}
+			
+			// sheet 에 insert 하는 부분
+			var orderBtn = $('#order-btn');
+			function isLoading(status){
+			  if(status){
+				$('html, body').addClass('wait');
+				orderBtn.attr('disabled', true).html('주문중...');
+			  } else {
+				$('html, body').removeClass('wait');
+				orderBtn.attr('disabled', false).html('주문하기');
+			  }
+			}
+			
+
+			var datas = [];
+
+			$('#order-btn').click(function(){
+				isLoading(true);
+				var orderList = [];
+				for (var i=0; i<checkbox.length; i++) {
+					if (checkbox[i].checked) {
+						orderList.push(checkbox[i].id);
+					}
+				}
+				if (orderList.length == 0) {
+					isLoading(false);
+					return;
+				}
+				
+				for (var i =0; i<orderList.length; i++) {
+					var order = document.getElementById(orderList[i]);
+					$.ajax({
+						type: "GET",
+						//url: "https://script.google.com/macros/s/AKfycbyNAXV-JfWF8vHh_UO_PxHselDytpCeu_0QA939DOlMEIaYOZ-C/exec",
+						url: "https://script.google.com/macros/s/AKfycbwa1z-_N8qNVGQ-NP08m_j6Z-96P0CP6ehGAotYzZRR9gwpYyI/exec",
+						data: {
+						  "메뉴": order.id,
+						  "가격": order.value,
+						  "테이블 번호": 2,
+						  "결제여부": 0
+						},
+						success: function (response) {
+						  isLoading(false);
+						  console.log(response);
+						  $('#showData').html('');
+							datas = [];
+
+						},
+						error: function (request, status, error) {
+						  console.log("error during doGet");
+						  isLoading(false);
+						  console.log("code:" + request.status + "\n" + "error:" + error);
+						  console.log(request.responseText);
+						}
+					});
+				}
+				
+				for (var i=0; i<checkbox.length; i++) {
+					checkbox[i].checked = "";
+				}
+
+
+			});
+			</script>
+			
+			
+			<!--input type = "button" id = 'copyButton' value = "복사" onclick="
+				copy();
+			"-->
+
+
+			
+
+			<br>
+			<!--input type = "button" id = 'payButton' value = "계산하기" onclick = "
+				location.href = 'https://qr.kakaopay.com/281006011175059731005292';
+			"-->
+			<br><br>
+			<!--a href="sms:01041281150?body=안녕하세요"> 문자전송 </a-->
+		<br>
+    </body>
+</html>
