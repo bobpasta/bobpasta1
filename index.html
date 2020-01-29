@@ -294,7 +294,7 @@
 						  "메뉴": order.goodsNm,
 						  "개수": order.cnt,
 						  "가격": order.goodsUnprc * order.cnt,
-						  "테이블 번호": 2,
+						  "테이블 번호": 1,
 						},
 						success: function (response) {
 						  isLoading(false);
@@ -312,7 +312,7 @@
 				}
 			}
 			copyToClipboard(totalAmount);
-			alert('결제 금액: ' + totalAmount + '원\n위 금액을 카카오페이에 입력해주세요.');
+			alert('아래 금액을 카카오페이에 입력해주세요\n\n결제 금액: ' + totalAmount + '원');
 			window.open('https://qr.kakaopay.com/281006011118310251003045');
 			//location.href = 'https://qr.kakaopay.com/281006011118310251003045';
 		});
