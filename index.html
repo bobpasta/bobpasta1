@@ -1,15 +1,11 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <p>
-	<span style="font-weight:bold;"><1번 테이블> </span>
+	<span style="font-weight:bold;">1번 테이블</span>
 	<br>
 	<img src='https://lh3.googleusercontent.com/5Pfothnh21Xsog37QyS2pxp6vf47YzTPu9d9eK-iPOSY5X3JqkfCZtUW8GVkS9eDFxBYeUf1Huzyf670hb0qAPyrfZoCUqL_jpqMvIX4EeZu-Al4dluoeSCLTfZSyunjmoCpbNra=w2400' alt="밥파스타 메뉴 사진"
 		style="height:auto; width:100%;"	
 	/>
-	<br>
-	<span >** 추가 주문시 페이지를 새로고침 해주세요 **</span>
-	<br>
-	<span > ** 필요 시 매니저를 불러주세요 ** </span>
 	<br>
 
 </p>
@@ -31,7 +27,11 @@
 <br>
 <span style="font-weight:bold; color:blue">3. 주문 및 결제를 클릭해주세요</span>
 <br>
-<span> 클릭과 동시에 주방에 주문이 들어갑니다<span/>
+<span> ** 클릭과 동시에 주방에 주문이 들어갑니다 **<span/>
+	<span>** 추가 주문시 페이지를 새로고침 해주세요 **</span>
+	<br>
+	<span > ** 필요 시 매니저를 불러주세요 ** </span>
+	<br>
 <br><br>
 <button id="order-btn"
 		style = "display: block;
@@ -311,8 +311,8 @@
 					totalAmount += order.cnt * order.goodsUnprc;
 				}
 			}
-			copyToClipboard(totalAmount);
-			alert('아래 금액을 카카오페이에 입력해주세요\n\n결제 금액: ' + totalAmount + '원\n\n\n');
+			//copyToClipboard(totalAmount);
+			alert('아래 금액을 카카오페이에 입력해주세요.\n\n결제 금액: ' + totalAmount + '원\n\n\n');
 			window.open('https://qr.kakaopay.com/281006011118310251003045');
 			//location.href = 'https://qr.kakaopay.com/281006011118310251003045';
 		});
