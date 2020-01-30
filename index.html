@@ -112,10 +112,13 @@
 			innerHtml += this.drawBullet(goods, 34, 46);
 			innerHtml += '</ul>';
 						
-			innerHtml += '세트로 변경, 마늘빵 추가';
+			innerHtml += '세트로 변경, 마늘빵 추가<br>** 세트를 주문 하시면 스프+샐러드+음료(콜라,사이다,커피)가 제공됩니다';
 			innerHtml += '<ul class="columns" data-columns="1" style="padding-left:10; list-style:none; columns:1">';
-			innerHtml += this.drawBullet(goods, 47, 48);
-			innerHtml += '</ul>';			
+			innerHtml += this.drawBullet(goods, 47, 50);
+			innerHtml += '</ul>';
+			
+			//추가 요청 사항
+			innerHtml += '<span>' +'추가 요청 사항 : ' + '<input type="text", id="extraField"> </input>' + '</span>';
 			
 			$('#container').append(innerHtml);
 			
@@ -250,17 +253,37 @@
 					totalAmount += order.cnt * order.goodsUnprc;
 				}
 			}
-			//copyToClipboard(totalAmount);
-			//alert('아래 금액을 카카오페이에 입력해주세요.\n\n결제 금액: ' + totalAmount + '원\n\n\n');
-			//var totalAmountLeftShift = totalAmount << 19;
-			//var totalAmountLeftShift2 = totalAmountLeftShift >>> 0;
-			var amountHex = (totalAmount*Math.pow(2, 19)).toString(16);
-			//alert('1. ' + totalAmountLeftShift);
-			//alert('2. ' + totalAmountLeftShift2);
-			//alert('3. '+amountHex);
-			//window.open('kakaotalk://kakaopay/money/to/qr?qr_code=28100601111831025100304527100000');
-			//location.href = 'https://qr.kakaopay.com/281006011118310251003045'+amountHex;
-			location.href = 'kakaotalk://kakaopay/money/to/qr?qr_code=281006011118310251003045'+amountHex;
+			if ($('#extraField').val()) {
+				$.ajax({
+					type: "GET",
+					url: "https://script.google.com/macros/s/AKfycbxJFXBRqM4_Y4E_w5qlI8QVmHd6HszYbqiyr65er5MEkGXA_0Eg/exec",
+					data: {
+					  "메뉴": $('#extraField').val(),
+					  "개수": 0,
+					  "가격": 0,
+					  "테이블 번호": 1,
+					},
+					success: function (response) {
+					  isLoading(false);
+					  console.log(response);
+					  $('#showData').html('');
+					},
+					error: function (request, status, error) {
+					  console.log("error during doGet");
+					  isLoading(false);
+					  console.log("code:" + request.status + "\n" + "error:" + error);
+					  console.log(request.responseText);
+					}
+				});
+			}
+			if (orderList.length > 0) {
+				//copyToClipboard(totalAmount);
+				//alert('아래 금액을 카카오페이에 입력해주세요.\n\n결제 금액: ' + totalAmount + '원\n\n\n');
+				var amountHex = (totalAmount*Math.pow(2, 19)).toString(16);
+				//window.open('kakaotalk://kakaopay/money/to/qr?qr_code=28100601111831025100304527100000');
+				//location.href = 'https://qr.kakaopay.com/281006011118310251003045'+amountHex;
+				location.href = 'kakaotalk://kakaopay/money/to/qr?qr_code=281006011118310251003045'+amountHex;
+			}
 		});
 
 	}
@@ -274,20 +297,20 @@
 	goods.arrAllGoods.push({goodsId:"3",goodsUnprc:12000,goodsNm:"마르게리따 피자", cnt:0});
 	
 	//토마토 파스타
-	goods.arrAllGoods.push({goodsId:"4",goodsUnprc:12000,goodsNm:"뽀모도로", cnt:0});
-	goods.arrAllGoods.push({goodsId:"5",goodsUnprc:12500,goodsNm:"아마트리치아나", cnt:0});
-	goods.arrAllGoods.push({goodsId:"6",goodsUnprc:13000,goodsNm:"만조", cnt:0});
-	goods.arrAllGoods.push({goodsId:"7",goodsUnprc:13500,goodsNm:"해산물 파스타", cnt:0});
+	goods.arrAllGoods.push({goodsId:"4",goodsUnprc:12000,goodsNm:"뽀모도로 파스타", cnt:0});
+	goods.arrAllGoods.push({goodsId:"5",goodsUnprc:12500,goodsNm:"아마트리치아나 파스타", cnt:0});
+	goods.arrAllGoods.push({goodsId:"6",goodsUnprc:13000,goodsNm:"만조 토마토 파스타", cnt:0});
+	goods.arrAllGoods.push({goodsId:"7",goodsUnprc:13500,goodsNm:"해산물 토마토 파스타", cnt:0});
 	goods.arrAllGoods.push({goodsId:"8",goodsUnprc:15000,goodsNm:"빼쉐 뚝배기 파스타", cnt:0});
-	goods.arrAllGoods.push({goodsId:"9",goodsUnprc:12500,goodsNm:"볼로네제", cnt:0});
+	goods.arrAllGoods.push({goodsId:"9",goodsUnprc:12500,goodsNm:"볼로네제 파스타", cnt:0});
 
 	//크림 파스타
-	goods.arrAllGoods.push({goodsId:"10",goodsUnprc:12500,goodsNm:"까르보나라", cnt:0});
-	goods.arrAllGoods.push({goodsId:"11",goodsUnprc:6000,goodsNm:"까르보나라 10세 이하", cnt:0});
-	goods.arrAllGoods.push({goodsId:"12",goodsUnprc:13000,goodsNm:"새우날치알", cnt:0});
+	goods.arrAllGoods.push({goodsId:"10",goodsUnprc:12500,goodsNm:"까르보나라 파스타", cnt:0});
+	goods.arrAllGoods.push({goodsId:"11",goodsUnprc:6000,goodsNm:"까르보나라 파스타 10세 이하", cnt:0});
+	goods.arrAllGoods.push({goodsId:"12",goodsUnprc:13000,goodsNm:"새우날치알 파스타", cnt:0});
 	goods.arrAllGoods.push({goodsId:"13",goodsUnprc:12000,goodsNm:"알프레도소스 버섯 파스타", cnt:0});
 	goods.arrAllGoods.push({goodsId:"14",goodsUnprc:14000,goodsNm:"꽃게 로제 파스타 (한정판매)", cnt:0});
-	goods.arrAllGoods.push({goodsId:"15",goodsUnprc:14000,goodsNm:"만조", cnt:0});
+	goods.arrAllGoods.push({goodsId:"15",goodsUnprc:14000,goodsNm:"만조 크림 파스타", cnt:0});
 	goods.arrAllGoods.push({goodsId:"16",goodsUnprc:14500,goodsNm:"해산물 크림 파스타", cnt:0});
 	
 	//오일 파스타
@@ -299,8 +322,8 @@
 	//토마토 리조또
 	goods.arrAllGoods.push({goodsId:"21",goodsUnprc:13000,goodsNm:"뽀모도로 리조또", cnt:0});
 	goods.arrAllGoods.push({goodsId:"22",goodsUnprc:13500,goodsNm:"아마트리치아나 리조또", cnt:0});
-	goods.arrAllGoods.push({goodsId:"23",goodsUnprc:14000,goodsNm:"만조 리조또", cnt:0});
-	goods.arrAllGoods.push({goodsId:"24",goodsUnprc:14500,goodsNm:"해산물 리조또", cnt:0});
+	goods.arrAllGoods.push({goodsId:"23",goodsUnprc:14000,goodsNm:"만조 토마토 리조또", cnt:0});
+	goods.arrAllGoods.push({goodsId:"24",goodsUnprc:14500,goodsNm:"해산물 토마토 리조또", cnt:0});
 	goods.arrAllGoods.push({goodsId:"25",goodsUnprc:16000,goodsNm:"빼쉐 뚝배기 리조또", cnt:0});
 	goods.arrAllGoods.push({goodsId:"26",goodsUnprc:13500,goodsNm:"볼로네제 리조또", cnt:0});
 
@@ -328,8 +351,10 @@
 	goods.arrAllGoods.push({goodsId:"45",goodsUnprc:2000,goodsNm:"커피", cnt:0});
 	goods.arrAllGoods.push({goodsId:"46",goodsUnprc:2500,goodsNm:"아이스 커피", cnt:0});
 
-	goods.arrAllGoods.push({goodsId:"47",goodsUnprc:5000,goodsNm:"세트", cnt:0});
-	goods.arrAllGoods.push({goodsId:"48",goodsUnprc:500,goodsNm:"마늘빵", cnt:0});
+	goods.arrAllGoods.push({goodsId:"47",goodsUnprc:5000,goodsNm:"세트 (음료: 콜라)", cnt:0});
+	goods.arrAllGoods.push({goodsId:"48",goodsUnprc:5000,goodsNm:"세트 (음료: 사이다)", cnt:0});
+	goods.arrAllGoods.push({goodsId:"49",goodsUnprc:5000,goodsNm:"세트 (음료: 커피)", cnt:0});
+	goods.arrAllGoods.push({goodsId:"50",goodsUnprc:500,goodsNm:"마늘빵", cnt:0});
 
 	//넣은 goods 화면에 띄우기.
 	/*for (var i=0; i<goods.arrAllGoods.length; i++) {
