@@ -50,7 +50,7 @@
 <script>
 	// menu 추가하기
 	function Goods(){
-
+		var tableNum = 1;
 		//json 배열[{goodsId:goodsId, goodsNm:goodsNm, amt:amt},{...},{...}]
 		this.arrAllGoods = new Array();//상품 목록
 		this.arrSelGoods = new Array();//선택한 상품 목록
@@ -236,7 +236,7 @@
 						  "메뉴": order.goodsNm,
 						  "개수": order.cnt,
 						  "가격": order.goodsUnprc * order.cnt,
-						  "테이블 번호": 1,
+						  "테이블 번호": tableNum,
 						},
 						success: function (response) {
 						  isLoading(false);
@@ -261,7 +261,7 @@
 					  "메뉴": $('#extraField').val(),
 					  "개수": 0,
 					  "가격": 0,
-					  "테이블 번호": 1,
+					  "테이블 번호": tableNum,
 					},
 					success: function (response) {
 					  isLoading(false);
