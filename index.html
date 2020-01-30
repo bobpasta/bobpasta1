@@ -20,7 +20,7 @@
 </body>
 <span style="font-weight:bold; color:blue">2. 주문 내역과 금액을 확인해주세요</span>
 <br>
-<div id="orders" style="border:3px solid #bcbcbc">
+<div id="orders" style="border:1px solid; padding:5px">
 <!--span> 주문 금액: <input type="text" style="border:0; width:50px" id="goodsTotAmt2" name="totAmt" value=0>원</span!-->
 </div>
 
@@ -251,8 +251,11 @@
 			}
 			//copyToClipboard(totalAmount);
 			alert('아래 금액을 카카오페이에 입력해주세요.\n\n결제 금액: ' + totalAmount + '원\n\n\n');
-			window.open('kakaotalk://kakaopay/money/to/qr?qr_code=28100601111831025100304527100000');
-			//location.href = 'https://qr.kakaopay.com/2810060111183102510030451f402302';
+			var totalAmountLeftShift = totalAmount << 19;
+			var amountHex = totalAmountLeftShift.toString(16);
+			alert(amountHex);
+			//window.open('kakaotalk://kakaopay/money/to/qr?qr_code=28100601111831025100304527100000');
+			location.href = 'https://qr.kakaopay.com/281006011118310251003045'+'amountHex';
 		});
 
 	}
