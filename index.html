@@ -251,12 +251,15 @@
 			}
 			//copyToClipboard(totalAmount);
 			alert('아래 금액을 카카오페이에 입력해주세요.\n\n결제 금액: ' + totalAmount + '원\n\n\n');
-			var totalAmountLeftShift = (totalAmount << 19) >>> 0;
-			var amountHex = totalAmountLeftShift.toString(16);
-			//alert('hi' + totalAmountLeftShift);
-			//alert('hihi'+amountHex);
+			//var totalAmountLeftShift = totalAmount << 19;
+			//var totalAmountLeftShift2 = totalAmountLeftShift >>> 0;
+			var amountHex = (totalAmount*Math.pow(2, 19)).toString(16);
+			//alert('1. ' + totalAmountLeftShift);
+			//alert('2. ' + totalAmountLeftShift2);
+			//alert('3. '+amountHex);
 			//window.open('kakaotalk://kakaopay/money/to/qr?qr_code=28100601111831025100304527100000');
-			location.href = 'https://qr.kakaopay.com/281006011118310251003045'+amountHex;
+			//location.href = 'https://qr.kakaopay.com/281006011118310251003045'+amountHex;
+			location.href = 'kakaotalk://kakaopay/money/to/qr?qr_code=281006011118310251003045'+amountHex;
 		});
 
 	}
